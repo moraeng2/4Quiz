@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML 카드형 퀴즈</title>
+  <style>
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      background: #fef9f8;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #ff6b6b;
+    }
+    .quiz-box {
+      margin-bottom: 40px;
+    }
+    .question {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+    .card-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .card {
+      width: 200px;
+      padding: 15px;
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .card:hover {
+      background-color: #ffe6e6;
+      border-color: #ff6b6b;
+    }
+    .correct {
+      background-color: #d4edda !important;
+      border-color: #28a745 !important;
+    }
+    .wrong {
+      background-color: #f8d7da !important;
+      border-color: #dc3545 !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>🃏 HTML 카드형 퀴즈</h1>
+  <div id="quiz-area"></div>
+  <script>
+    const quizData = [
+      // 구조 태그
+      { q: "HTML 문서의 기본 뼈대를 감싸는 태그는?", options: ["<body>", "<html>", "<head>", "<section>"], answer: "<html>" },
+      { q: "본문 내용을 담는 주요 구조 태그는?", options: ["<html>", "<header>", "<body>", "<meta>"], answer: "<body>" },
+      { q: "문서의 정보를 담는 head 안에 쓰이는 태그는?", options: ["<footer>", "<meta>", "<section>", "<div>"], answer: "<meta>" },
+      { q: "머리말 영역에 사용되는 구조 태그는?", options: ["<head>", "<header>", "<nav>", "<footer>"], answer: "<header>" },
+      { q: "문서 하단 정보에 주로 사용되는 구조 태그는?", options: ["<nav>", "<footer>", "<aside>", "<main>"], answer: "<footer>" },
+
+      // 강조 태그
+      { q: "중요한 의미를 담아 굵게 강조할 때 쓰는 태그는?", options: ["<strong>", "<em>", "<mark>", "<i>"], answer: "<strong>" },
+      { q: "기울임 효과와 함께 의미 강조를 주는 태그는??", options: ["<i>", "<em>", "<u>", "<b>"], answer: "<em>" },
+      { q: "논리적으로 중요한 내용을 강조할 때 쓰는 태그는?", options: ["<b>", "<strong>", "<u>", "<sub>"], answer: "<strong>" },
+      { q: "형광펜 효과를 주는 강조 태그는?", options: ["<mark>", "<ins>", "<del>", "<code>"], answer: "<mark>" },
+      { q: "밑줄 강조 태그는?", options: ["<u>", "<sub>", "<sup>", "<em>"], answer: "<u>" },
+
+      // 글자 형태 태그
+      { q: "줄바꿈을 할 때 사용하는 태그는?", options: ["<br>", "<hr>", "<p>", "<div>"], answer: "<br>" },
+      { q: "단락(문단)을 만들 때 쓰는 태그는?", options: ["<div>", "<p>", "<span>", "<h1>"], answer: "<p>" },
+      { q: "수평선을 그을 때 사용하는 태그는?", options: ["<line>", "<hr>", "<rule>", "<br>"], answer: "<hr>" },
+      { q: "제목을 가장 크게 표시하는 태그는?", options: ["<h6>", "<h3>", "<h1>", "<h4>"], answer: "<h1>" },
+      { q: "작은 텍스트를 표시할 때 사용하는 태그는?", options: ["<small>", "<sub>", "<sup>", "<span>"], answer: "<small>" },
+
+      // 링크 태그
+      { q: "웹페이지에서 링크를 만드는 태그는?", options: ["<a>", "<link>", "<href>", "<button>"], answer: "<a>" },
+      { q: "웹페이지 외부 스타일시트를 연결할 때 쓰는 태그는?", options: ["<a>", "<style>", "<link>", "<meta>"], answer: "<link>" },
+      { q: "링크 주소를 지정할 때 사용하는 속성은?", options: ["src", "href", "target", "rel"], answer: "href" },
+      { q: "링크를 새 창으로 열 때 사용하는 속성 값은?", options: ["_self", "_parent", "_top", "_blank"], answer: "_blank" },
+      { q: "링크를 눌렀을 때 같은 페이지의 특정 위치로 이동시키는 태그는?", options: ["<a href='#section1'>", "<link>", "<meta>", "<id>"], answer: "<a href='#section1'>" },
+
+      // 멀티미디어 태그
+      { q: "이미지를 삽입할 때 사용하는 태그는?", options: ["<img>", "<image>", "<media>", "<src>"], answer: "<img>" },
+      { q: "오디오 파일을 삽입할 때 사용하는 태그는?", options: ["<audio>", "<sound>", "<media>", "<mp3>"], answer: "<audio>" },
+      { q: "비디오를 삽입할 때 사용하는 태그는?", options: ["<video>", "<movie>", "<media>", "<mp4>"], answer: "<video>" },
+      { q: "이미지에 설명글을 추가할 때 쓰는 속성은?", options: ["alt", "title", "desc", "href"], answer: "alt" },
+      { q: "오디오/비디오를 자동 재생하려면 사용하는 속성은?", options: ["autoplay", "loop", "controls", "src"], answer: "autoplay" },
+
+      // 입력양식 태그
+      { q: "텍스트 입력칸을 만드는 태그는?", options: ["<input>", "<textarea>", "<form>", "<label>"], answer: "<input>" },
+      { q: "여러 줄 텍스트 입력을 위해 사용하는 태그는?", options: ["<textarea>", "<input>", "<form>", "<field>"], answer: "<textarea>" },
+      { q: "입력값을 서버로 전송하기 위한 태그는?", options: ["<form>", "<input>", "<send>", "<action>"], answer: "<form>" },
+      { q: "입력 항목에 라벨을 붙일 때 쓰는 태그는?", options: ["<label>", "<name>", "<title>", "<legend>"], answer: "<label>" },
+      { q: "체크박스를 만들기 위한 input 속성값은?", options: ["checkbox", "radio", "text", "submit"], answer: "checkbox" },
+
+      // 공간분할 태그 및 경로
+      { q: "문서의 영역을 나눌 때 가장 많이 사용하는 태그는?", options: ["<div>", "<section>", "<article>", "<p>"], answer: "<div>" },
+      { q: "텍스트 일부만 스타일을 주고 싶을 때 사용하는 태그는?", options: ["<span>", "<p>", "<br>", "<small>"], answer: "<span>" },
+      { q: "절대경로의 예시는?", options: ["https://naver.com/image.jpg", "./img/cat.jpg", "../img.jpg", "cat.png"], answer: "https://naver.com/image.jpg" },
+      { q: "상대경로 중 현재 폴더 기준의 경로는?", options: ["./images/photo.jpg", "/root/photo.jpg", "https://photo.png", "image.jpg"], answer: "./images/photo.jpg" },
+      { q: "상대경로 중 한 단계 상위 폴더를 나타내는 기호는?", options: ["../", "./", "//", "/"], answer: "../" }
+    ];
+
+    const quizArea = document.getElementById("quiz-area");
+    quizData.forEach((qData, idx) => {
+      const box = document.createElement("div");
+      box.className = "quiz-box";
+      box.innerHTML = `<div class="question">${idx + 1}. ${qData.q}</div>`;
+
+      const container = document.createElement("div");
+      container.className = "card-container";
+      qData.options.forEach(opt => {
+        const btn = document.createElement("div");
+        btn.className = "card";
+        btn.innerText = opt;
+        btn.addEventListener("click", () => {
+          const isCorrect = opt === qData.answer;
+          if (isCorrect) {
+            btn.classList.add("correct");
+          } else {
+            btn.classList.add("wrong");
+          }
+          // 다른 선택지 클릭 막기
+          container.querySelectorAll('.card').forEach(c => c.style.pointerEvents = "none");
+        });
+        container.appendChild(btn);
+      });
+
+      box.appendChild(container);
+      quizArea.appendChild(box);
+    });
+  </script>
+</body>
+</html>
