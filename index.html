@@ -76,27 +76,40 @@
       { q: "제목을 가장 크게 표시하는 태그는?", options: ["<h6>", "<h3>", "<h1>", "<h4>"], answer: "<h1>" },
       { q: "작은 텍스트를 표시할 때 사용하는 태그는?", options: ["<small>", "<sub>", "<sup>", "<span>"], answer: "<small>" },
 
+      // 목록 태그
+      { q: "순서 없는 목록을 만들 때 사용하는 태그는?", options: ["<ol>", "<li>", "<ul>", "<dl>"], answer: "<ul>" },
+      { q: "순서 있는 목록을 만들 때 사용하는 태그는?", options: ["<ol>", "<ul>", "<li>", "<dl>"], answer: "<ol>" },
+      { q: "목록 항목을 나타내는 태그는?", options: ["<item>", "<li>", "<list>", "<dt>"], answer: "<li>" },
+      { q: "정의 목록을 만들 때 사용하는 태그는?", options: ["<dd>", "<dt>", "<dl>", "<li>"], answer: "<dl>" },
+      { q: "정의 목록에서 용어를 나타내는 태그는?", options: ["<dt>", "<dd>", "<li>", "<ul>"], answer: "<dt>" },
+
       // 링크 태그
       { q: "웹페이지에서 링크를 만드는 태그는?", options: ["<a>", "<link>", "<href>", "<button>"], answer: "<a>" },
       { q: "웹페이지 외부 스타일시트를 연결할 때 쓰는 태그는?", options: ["<a>", "<style>", "<link>", "<meta>"], answer: "<link>" },
       { q: "링크 주소를 지정할 때 사용하는 속성은?", options: ["src", "href", "target", "rel"], answer: "href" },
       { q: "링크를 새 창으로 열 때 사용하는 속성 값은?", options: ["_self", "_parent", "_top", "_blank"], answer: "_blank" },
-      { q: "링크를 눌렀을 때 같은 페이지의 특정 위치로 이동시키는 태그는?", options: ["<a href='#section1'>", "<link>", "<meta>", "<id>"], answer: "<a href='#section1'>" },
+      { q: "링크를 눌렀을 때 같은 페이지의 특정 위치로 이동시키는 태그는?", options: ["<a href='section1'>", "<link>", "<a href='#section1'>", "<a id='section1'>"], answer: "<a href='#section1'>" },
+
+      // 테이블 태그
+      { q: "테이블을 시작할 때 사용하는 태그는?", options: ["<table>", "<tr>", "<td>", "<th>"], answer: "<table>" },
+      { q: "테이블의 행을 나타내는 태그는?", options: ["<th>", "<td>", "<tr>", "<tbody>"], answer: "<tr>" },
+      { q: "테이블의 열을 나타내는 태그는?", options: ["<tc>", "<td>", "<tr>", "<caption>"], answer: "<td>" },
+      { q: "테이블의 제목 셀을 나타내는 태그는?", options: ["<tr>", "<th>", "<tr>", "<thead>"], answer: "<th>" },
+      { q: "테이블의 제목을 나타내는 태그는?", options: ["<legend>", "<title>", "<caption>", "<legend>"], answer: "<caption>" },
 
       // 멀티미디어 태그
-      { q: "이미지를 삽입할 때 사용하는 태그는?", options: ["<img>", "<image>", "<media>", "<src>"], answer: "<img>" },
-      { q: "오디오 파일을 삽입할 때 사용하는 태그는?", options: ["<audio>", "<sound>", "<media>", "<mp3>"], answer: "<audio>" },
+      { q: "이미지를 삽입할 때 사용하는 태그는?", options: ["<image>", "<img>", "<media>", "<src>"], answer: "<img>" },
+      { q: "오디오 파일을 삽입할 때 사용하는 태그는?", options: ["<media>", "<sound>", "<audio>", "<mp3>"], answer: "<audio>" },
       { q: "비디오를 삽입할 때 사용하는 태그는?", options: ["<video>", "<movie>", "<media>", "<mp4>"], answer: "<video>" },
       { q: "이미지에 설명글을 추가할 때 쓰는 속성은?", options: ["alt", "title", "desc", "href"], answer: "alt" },
-      { q: "오디오/비디오를 자동 재생하려면 사용하는 속성은?", options: ["autoplay", "loop", "controls", "src"], answer: "autoplay" },
+      { q: "오디오/비디오를 자동 재생하려면 사용하는 속성은?", options: ["autocomplete", "loop", "controls", "autoplay"], answer: "autoplay" },
 
       // 입력양식 태그
-      { q: "form 태그에서 서버로 보낼 데이터를 담는 속성은?", options: ["method", "action", "name", "target"], answer: "action" },
-      { q: "텍스트 입력칸을 만드는 태그는?", options: ["<input>", "<textarea>", "<form>", "<label>"], answer: "<input>" },
-      { q: "여러 줄 텍스트 입력을 위해 사용하는 태그는?", options: ["<textarea>", "<input>", "<form>", "<field>"], answer: "<textarea>" },
+      { q: "form 태그에서 특정 페이지로 보낼 경로를 담는 속성은?", options: ["method", "action", "name", "target"], answer: "action" },
+      { q: "텍스트 입력칸을 만드는 태그는?", options: ["<label>", "<textarea>", "<form>", "<input>"], answer: "<input>" },
+      { q: "여러 줄 텍스트 입력을 위해 사용하는 태그는?", options: ["<input>", "<textarea>", "<form>", "<field>"], answer: "<textarea>" },
       { q: "입력값을 서버로 전송하기 위한 태그는?", options: ["<form>", "<input>", "<send>", "<action>"], answer: "<form>" },
-      { q: "입력 항목에 라벨을 붙일 때 쓰는 태그는?", options: ["<label>", "<name>", "<title>", "<legend>"], answer: "<label>" },
-      { q: "체크박스를 만들기 위한 input 속성값은?", options: ["checkbox", "radio", "text", "submit"], answer: "checkbox" },
+      { q: "입력 항목에 설명을 붙일 때 쓰는 태그는?", options: ["<label>", "<name>", "<title>", "<legend>"], answer: "<label>" },
 
       // 공간분할 태그 및 경로
       { q: "문서의 영역을 나눌 때 가장 많이 사용하는 태그는?", options: ["<div>", "<section>", "<article>", "<p>"], answer: "<div>" },
