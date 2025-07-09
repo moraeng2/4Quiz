@@ -109,14 +109,14 @@
       { q: "텍스트 입력칸을 만드는 태그는?", options: ["<label>", "<textarea>", "<form>", "<input>"], answer: "<input>" },
       { q: "여러 줄 텍스트 입력을 위해 사용하는 태그는?", options: ["<input>", "<textarea>", "<form>", "<field>"], answer: "<textarea>" },
       { q: "입력값을 서버로 전송하기 위한 태그는?", options: ["<form>", "<input>", "<send>", "<action>"], answer: "<form>" },
-      { q: "입력 항목에 설명을 붙일 때 쓰는 태그는?", options: ["<label>", "<name>", "<title>", "<legend>"], answer: "<label>" },
+      { q: "입력 항목에 설명을 붙일 때 쓰는 태그는?", options: ["<title>", "<name>", "<label>", "<legend>"], answer: "<label>" },
 
       // 공간분할 태그 및 경로
-      { q: "문서의 영역을 나눌 때 가장 많이 사용하는 태그는?", options: ["<div>", "<section>", "<article>", "<p>"], answer: "<div>" },
+      { q: "문서의 영역을 나눌 때 가장 많이 사용하는 태그는?", options: ["<p>", "<section>", "<article>", "<div>"], answer: "<div>" },
       { q: "텍스트 일부만 스타일을 주고 싶을 때 사용하는 태그는?", options: ["<span>", "<p>", "<br>", "<small>"], answer: "<span>" },
-      { q: "절대경로의 예시는?", options: ["https://naver.com/image.jpg", "./img/cat.jpg", "../img.jpg", "cat.png"], answer: "https://naver.com/image.jpg" },
-      { q: "상대경로 중 현재 폴더 기준의 경로는?", options: ["./images/photo.jpg", "/root/photo.jpg", "https://photo.png", "image.jpg"], answer: "./images/photo.jpg" },
-      { q: "상대경로 중 한 단계 상위 폴더를 나타내는 기호는?", options: ["../", "./", "//", "/"], answer: "../" }
+      { q: "절대경로의 예시는?", options: ["./img/cat.jpg","https://naver.com/image.jpg", "../img.jpg", "cat.png"], answer: "https://naver.com/image.jpg" },
+      { q: "상대경로 중 현재 폴더 기준의 경로는?", options: ["./images/photo.jpg", "/root/photo.jpg", "https://photo.png", "//image.jpg"], answer: "./images/photo.jpg" },
+      { q: "상대경로 중 한 단계 상위 폴더를 나타내는 기호는?", options: ["../../", "./", "../", "/"], answer: "../" }
     ];
 
     const quizArea = document.getElementById("quiz-area");
